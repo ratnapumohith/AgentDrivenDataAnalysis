@@ -23,6 +23,8 @@ MERMAID_BLOCK_RE = re.compile(r"```mermaid\n(.*?)\n```", re.DOTALL)
 CSV_PATH = Path(__file__).parent / "AI_Impact_Student_Life_2026.csv"
 REPORT_PATH = Path(__file__).parent / "analysis_report.md"
 PDF_PATH = Path(__file__).parent / "analysis_report.pdf"
+PDF_CSS_PATH = Path(__file__).parent / "pdf.css"
+GITHUB_MARKDOWN_CSS = "https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.css"
 
 NUMERIC_COLS = (
     "Age",
@@ -582,7 +584,15 @@ def to_pdf(md_path):
         patched = _render_mermaid_to_svgs(md_text, base_dir)
         intermediate_md.write_text(patched, encoding="utf-8")
 
-        _run_node_cli(["md-to-pdf", str(intermediate_md)])
+        cmd = [
+            "md-to-pdf",
+            "--stylesheet", GITHUB_MARKDOWN_CSS,
+            "--body-class", "markdown-body",
+        ]
+        if PDF_CSS_PATH.exists():
+            cmd += ["--stylesheet", str(PDF_CSS_PATH)]
+        cmd.append(str(intermediate_md))
+        _run_node_cli(cmd)
 
         if intermediate_pdf.exists():
             if PDF_PATH.exists():

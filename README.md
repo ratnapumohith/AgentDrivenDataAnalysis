@@ -14,6 +14,7 @@ The goal was to learn how an AI agent collaborates on a typical data-analysis wo
 | `analysis.py` | Self-contained Python analysis script (with a stdlib fallback if pandas is unavailable) |
 | `analysis_report.md` | Generated boardroom-style report with findings, recommendations, and 5 Mermaid charts |
 | `analysis_report.pdf` | PDF version of the report (auto-generated alongside the markdown) |
+| `pdf.css` | Print stylesheet used by `md-to-pdf` to keep headings glued to their content and prevent charts/tables from splitting across pages |
 | `.gitignore` | Excludes Python bytecode caches and virtual environments from version control |
 
 ## How to run
