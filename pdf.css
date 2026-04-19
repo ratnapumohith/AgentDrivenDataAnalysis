@@ -1,6 +1,18 @@
 /* Print stylesheet for analysis_report.pdf
    Keeps section headings glued to their following content and prevents
-   charts, tables, and blockquotes from being split across page boundaries. */
+   tables from being split across pages. Trims the default GitHub-markdown
+   body padding so the PDF density matches the rendered .md more closely. */
+
+.markdown-body {
+  padding: 15px !important;
+}
+
+img[src^="chart_"] {
+  max-height: 320px;
+  width: auto;
+  display: block;
+  margin: 0.5em auto;
+}
 
 h1, h2, h3, h4, h5, h6 {
   break-after: avoid-page;
@@ -12,7 +24,7 @@ h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
   page-break-before: avoid;
 }
 
-img, table, blockquote, pre, figure {
+table {
   break-inside: avoid-page;
   page-break-inside: avoid;
 }
@@ -20,9 +32,4 @@ img, table, blockquote, pre, figure {
 tr, td, th {
   break-inside: avoid-page;
   page-break-inside: avoid;
-}
-
-p {
-  orphans: 3;
-  widows: 3;
 }

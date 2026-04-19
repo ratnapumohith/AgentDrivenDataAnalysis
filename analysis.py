@@ -588,6 +588,7 @@ def to_pdf(md_path):
             "md-to-pdf",
             "--stylesheet", GITHUB_MARKDOWN_CSS,
             "--body-class", "markdown-body",
+            "--pdf-options", '{"format":"A4","margin":{"top":"15mm","right":"15mm","bottom":"15mm","left":"15mm"}}',
         ]
         if PDF_CSS_PATH.exists():
             cmd += ["--stylesheet", str(PDF_CSS_PATH)]
