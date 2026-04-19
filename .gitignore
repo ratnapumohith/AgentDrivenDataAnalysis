@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# PDF pipeline intermediates (regenerated on every run)
+chart_*.svg
+_pdf_input.md
+_pdf_input.pdf
+_chart_*.mmd
